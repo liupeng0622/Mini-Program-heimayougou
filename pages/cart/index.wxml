@@ -1,0 +1,6 @@
+<!-- 收货地址 -->
+<view class="receive_address_row">
+  <view class="address_btn">
+    <button type="primary" plain="{{true}}">获取收获地址</button>
+  </view>
+</view>

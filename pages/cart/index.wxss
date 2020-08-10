@@ -1,0 +1,6 @@
+.receive_address_row .address_btn {
+  padding: 20rpx;
+}
+.receive_address_row .address_btn button {
+  widows: 60%;
+}
