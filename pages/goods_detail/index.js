@@ -71,6 +71,7 @@ Page({
     if (index === -1) {
       this.GoodsInfo.num = 1;
       this.GoodsInfo.checked = true;
+      this.GoodsInfo.checked = true;
       cart.push(this.GoodsInfo);
     } else {
       cart[index].num++;

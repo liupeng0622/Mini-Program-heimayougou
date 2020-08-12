@@ -14,21 +14,43 @@
   0> onLoad onShow
   1> 获取本地存储中的地址数据
   2> 把这个数据设置给 data 中的一个变量
-      */
+3. onShow
+  0> 回到了商品详情页面，第一次添加商品的时候，手动添加了属性
+    1. num = 1;
+    2. checked = true;
+  1> 获取缓存中的购物车数组
+  2> 把购物车数据填充到 data 中
+4. 全选的实现，数据的展示
+  1 onShow 获取缓存中的购物车数组
+  2 根据购物车中的商品数据，所有的商品都被选中 checked=true，全选就被选中
+5. 总价格和总数量
+  1 都需要商品被选中，我们才拿它来计算
+*/
 
 import { getSetting, chooseAddress, openSetting } from "../../utils/asyncWx.js"
 import regeneratorRuntime from '../../lib/runtime/runtime'
 
 Page({
   data: {
-    address: {}
+    address: {},
+    cart: [],
+    allChecked: false
   },
   onShow(){
-    // 1. 获取缓存中收获地址信息
-    const address = wx.getStorageSync("address");;
-    // 2. 给 data 赋值
+    // 获取缓存中收获地址信息
+    const address = wx.getStorageSync("address");
+    // 获取缓存中购物车数据
+    const cart = wx.getStorageSync("cart")||[];
+    // 计算全选
+    // every 数组方法，遍历接收一个回调函数，每一个回调函数都返回 true，every 方法返回true
+    // 只要有一个回调函数返回了 false，那么不再循环执行，直接返回false
+    // 空数组调用 every，返回值为 true
+    const allChecked = cart.length ? cart.every(v=>v.checked) : false;
+    // 给 data 赋值
     this.setData({
-      address
+      address,
+      cart,
+      allChecked
     })
   },
     // 点击收货地址
