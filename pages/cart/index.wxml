@@ -1,6 +1,32 @@
 <!-- 收货地址 -->
 <view class="receive_address_row">
-  <view class="address_btn">
-    <button type="primary" plain="{{true}}">获取收获地址</button>
+  <!-- 当收货地址不存在，显示获取地址按钮。空对象 bool 类型为true，用address属性验证是否为空 -->
+  <view class="address_btn" wx:if="{{!address.userName}}">
+    <button bindtap="handleChooseAddress" type="primary" plain="{{true}}">获取收获地址</button>
+  </view>
+  <!-- 当收货地址存在，详细信息就显示 -->
+  <view wx:else class="user_info_row">
+    <view class="user_info">
+      <view>{{address.userName}}</view>
+      <view>{{address.all}}</view>
+    </view>
+    <view class="user_phone">
+      <view>{{address.telNumber}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 购物车内容 -->
+<view class="cart_content">
+  <view class="cart_title">购物车</view>
+  <view class="cart_main">
+    <view class="cart_item">
+      <!-- 复选框 -->
+      <view class="cart_chk_wrap"></view>
+      <!-- 商品图片 -->
+      <navigator class="vart_img_wrap"></navigator>
+      <!-- 商品信息 -->
+      <view class="cart_info_wrap"></view>
+    </view>
   </view>
 </view>
